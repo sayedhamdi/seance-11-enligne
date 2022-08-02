@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <button id="btn">click</button>
+    <p>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur,
+      provident? Debitis odio totam fugit deserunt recusandae, delectus
+      assumenda at sequi consectetur, velit, dolor repellat vel voluptas ducimus
+      sunt quidem beatae.
+    </p>
+  </body>
+  <script>
+    let open = false;
+    $("p").css("display", "none");
+    /*$("#btn").click(function () {
+      if (!open) {
+        $("#btn").html("close");
+        $("p").css("display", "block");
+      } else {
+        $("#btn").html("open");
+        $("p").css("display", "none");
+      }
+      open = !open;
+    });*/
+    $("#btn").click(function () {
+      $("p").toggle(600).slideToggle(800).fadeToggle(600).css("color", "red");
+    });
+  </script>
+</html>

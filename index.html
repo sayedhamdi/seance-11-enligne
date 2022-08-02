@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #text1,
+      #text2,
+      #text3,
+      #text4 {
+        display: none;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+      }
+      button {
+        background: none;
+      }
+      .btn {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .form {
+        margin-top: 200px;
+        display: flex;
+      }
+
+      [name="email"] {
+        border: 2px solid orange;
+      }
+      .error {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <button id="btn1">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/159/159666.png"
+          style="width: 60px"
+          alt=""
+        />
+      </button>
+      <div id="text1">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem
+        inventore magnam facilis quidem, totam, vel dolor eos veniam porro
+        voluptatum eligendi voluptatibus iste nobis et maxime tempore
+        perferendis labore veritatis.
+      </div>
+      <button id="btn2">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/159/159666.png"
+          style="width: 60px"
+          alt=""
+        />
+      </button>
+      <div id="text2">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem
+        inventore magnam facilis quidem, totam, vel dolor eos veniam porro
+        voluptatum eligendi voluptatibus iste nobis et maxime tempore
+        perferendis labore veritatis.
+      </div>
+      <button id="btn3">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/159/159666.png"
+          style="width: 60px"
+          alt=""
+        />
+      </button>
+      <div id="text3">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem
+        inventore magnam facilis quidem, totam, vel dolor eos veniam porro
+        voluptatum eligendi voluptatibus iste nobis et maxime tempore
+        perferendis labore veritatis.
+      </div>
+      <button id="btn4">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/159/159666.png"
+          style="width: 60px"
+          alt=""
+        />
+      </button>
+      <div id="text4">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem
+        inventore magnam facilis quidem, totam, vel dolor eos veniam porro
+        voluptatum eligendi voluptatibus iste nobis et maxime tempore
+        perferendis labore veritatis.
+      </div>
+    </div>
+    <form class="form" action="http://google.com">
+      <!-- natural behavior of HTML5-->
+      <input type="text" name="email" placeholder="" />
+      <span class="error"></span>
+      <button type="submit">envoyer</button>
+    </form>
+  </body>
+  <script>
+    let iconClose =
+      "<img src='https://cdn-icons-png.flaticon.com/512/56/56749.png'  style='width:60px' alt=''/>";
+    let iconOpen =
+      "<img src='https://cdn-icons-png.flaticon.com/512/159/159666.png'  style='width:60px' alt=''/>";
+    let button1 = document.querySelector("#btn1");
+    let text1 = document.querySelector("#text1");
+    let open1 = false;
+    button1.onclick = function () {
+      // ouvrir un panel
+      if (open1) {
+        text1.style.display = "none";
+        button1.innerHTML =
+          "<div class='btn'><span>Opening the first section </span>" +
+          iconOpen +
+          "</div>";
+      } else {
+        text1.style.display = "block";
+        button1.innerHTML = iconClose;
+      }
+      open1 = !open1;
+    };
+
+    let button2 = document.querySelector("#btn2");
+
+    let text2 = document.querySelector("#text2");
+    let open2 = false;
+    button2.onclick = function () {
+      if (open2) {
+        text2.style.display = "none";
+        button2.innerHTML = iconOpen;
+
+        // close other buttons
+      } else {
+        text2.style.display = "block";
+        button2.innerHTML = iconClose;
+      }
+      open2 = !open2;
+    };
+    let button3 = document.querySelector("#btn3");
+    let text3 = document.querySelector("#text3");
+    let open3 = false;
+    button3.onclick = function () {
+      if (open3) {
+        text3.style.display = "none";
+        button3.innerHTML = iconOpen;
+      } else {
+        text3.style.display = "block";
+        button3.innerHTML = iconClose;
+      }
+      open3 = !open3;
+    };
+    let button4 = document.querySelector("#btn4");
+    let text4 = document.querySelector("#text4");
+    let open4 = false;
+    button4.onclick = function () {
+      // ouvrir un panel
+      if (open4) {
+        text4.style.display = "none";
+        button4.innerHTML = iconOpen;
+      } else {
+        text4.style.display = "block";
+        button4.innerHTML = iconClose;
+      }
+      open4 = !open4;
+    };
+
+    // nasmaa l'event mtaa el envoi du formulaire
+    // solution : 1
+    // On sumbit c'est un evenement qui s'execute lors de l'envoi du formulaire
+
+    // nasmaa le click sur le boutton
+
+    // 1
+
+    let form = document.querySelector("form");
+    let emailInput = document.querySelector("[name='email']");
+    let emailRegEx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    let error = document.querySelector(".error");
+    form.onsubmit = function (e) {
+      error.innerHTML = "";
+      emailInput.style.borderColor = "orange";
+
+      e.preventDefault();
+      let email = emailInput.value;
+      if (email == "") {
+        error.innerHTML +=
+          "<div>Email is empty please fill in a valid email</div>";
+        emailInput.style.borderColor = "red";
+      }
+      if (!emailRegEx.test(email)) {
+        error.innerHTML += "<div>Email is invalid</div>";
+        emailInput.style.borderColor = "red";
+      }
+    };
+  </script>
+</html>
